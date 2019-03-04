@@ -2,4 +2,18 @@
     <string name="app_name">HADD</string>
     <string name="high_definition_audio_detection_director">High-definition Audio Detection Director</string>
     <string name="connect_to_hadd">Connect to HADD</string>
+    <string name="title_activity_themechange">Themechange</string>
+    <string name="donkerblauw">Donkerblauw</string>
+    <string name="lichtblauw">Lichtblauw</string>
+    <string name="donkergroen">Donkergroen</string>
+    <string name="lichtgroen">Lichtgroen</string>
+    <string name="geel">Geel</string>
+    <string name="roze">Roze</string>
+    <string name="zwart">Zwart</string>
+    <string name="rood">Rood</string>
+    <string name="paars">Paars</string>
+    <string name="oranje">Oranje</string>
+    <string name="grijs">Grijs</string>
+    <string name="bruin">Bruin</string>
+    <string name="basisthema">Basisthema</string>
 </resources>
