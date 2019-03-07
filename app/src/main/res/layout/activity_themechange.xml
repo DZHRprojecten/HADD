@@ -1,180 +1,249 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:paddingBottom="16dp"
+    android:paddingTop="32dp"
+    android:paddingLeft="16dp"
+    android:paddingRight="16dp"
     tools:context=".Themechange">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_allignParentLeft="true"
+        android:layout_allignparentStart="true"
+        android:id="@+id/LinearLayout">
+
+    <EditText
+        android:id="@+id/Themechangetitle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textMultiLine"
+        android:text="Thema veranderen" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_allignParentLeft="true"
+        android:layout_allignparentStart="true"
+        android:layout_marginTop="60dp">
 
     <Button
         android:id="@+id/bdonkerblauw"
-        android:layout_width="130dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="60dp"
-        android:layout_marginLeft="60dp"
-        android:layout_marginTop="100dp"
+        android:layout_width="0dp"
+        android:layout_marginRight="15dp"
+        android:layout_weight="1"
+        android:layout_height="44dp"
         android:background="@color/darkblue"
         android:text="@string/donkerblauw"
         android:textColor="@android:color/white"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <Button
-        android:id="@+id/blichtgroen"
-        android:layout_width="130dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:layout_marginEnd="60dp"
-        android:layout_marginRight="60dp"
-        android:background="@color/lightgreen"
-        android:text="@string/lichtgroen"
-        android:textColor="@color/black"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/blichtblauw" />
+        tools:layout_editor_absoluteX="60dp"
+        tools:layout_editor_absoluteY="100dp" />
 
     <Button
         android:id="@+id/blichtblauw"
-        android:layout_width="130dp"
+        android:layout_width="0dp"
+        android:layout_weight="1"
         android:layout_height="wrap_content"
-        android:layout_marginTop="100dp"
-        android:layout_marginEnd="60dp"
-        android:layout_marginRight="60dp"
         android:background="@color/lightblue"
         android:text="@string/lichtblauw"
         android:textColor="@android:color/white"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        tools:layout_editor_absoluteX="221dp"
+        tools:layout_editor_absoluteY="100dp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_allignParentLeft="true"
+        android:layout_allignparentStart="true"
+        android:layout_marginTop="120dp">
 
     <Button
         android:id="@+id/bdonkergroen"
-        android:layout_width="130dp"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_marginRight="15dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="60dp"
-        android:layout_marginLeft="60dp"
-        android:layout_marginTop="30dp"
         android:background="@color/darkgreen"
         android:text="@string/donkergroen"
         android:textColor="@color/white"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/bdonkerblauw" />
+        tools:layout_editor_absoluteX="60dp"
+        tools:layout_editor_absoluteY="174dp" />
+
+    <Button
+        android:id="@+id/blichtgroen"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_height="wrap_content"
+        android:background="@color/lightgreen"
+        android:text="@string/lichtgroen"
+        android:textColor="@color/black"
+        tools:layout_editor_absoluteX="221dp"
+        tools:layout_editor_absoluteY="178dp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_allignParentLeft="true"
+        android:layout_allignparentStart="true"
+        android:layout_marginTop="180dp">
 
     <Button
         android:id="@+id/bgeel"
-        android:layout_width="130dp"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_marginRight="15dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="60dp"
-        android:layout_marginLeft="60dp"
-        android:layout_marginTop="30dp"
         android:background="@color/yellow"
         android:text="@string/geel"
         android:textColor="@color/black"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/bdonkergroen" />
+        tools:layout_editor_absoluteX="60dp"
+        tools:layout_editor_absoluteY="252dp" />
 
     <Button
         android:id="@+id/broze"
-        android:layout_width="130dp"
+        android:layout_width="0dp"
+        android:layout_weight="1"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:layout_marginEnd="60dp"
-        android:layout_marginRight="60dp"
         android:background="@color/pink"
         android:text="@string/roze"
         android:textColor="@color/black"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/blichtgroen" />
+        tools:layout_editor_absoluteX="221dp"
+        tools:layout_editor_absoluteY="256dp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_allignParentLeft="true"
+        android:layout_allignparentStart="true"
+        android:layout_marginTop="240dp">
 
     <Button
         android:id="@+id/bzwart"
-        android:layout_width="130dp"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_marginRight="15dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="60dp"
-        android:layout_marginLeft="60dp"
-        android:layout_marginTop="30dp"
         android:background="@color/black"
         android:text="@string/zwart"
         android:textColor="@color/white"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/bgeel" />
+        tools:layout_editor_absoluteX="60dp"
+        tools:layout_editor_absoluteY="330dp" />
 
     <Button
         android:id="@+id/bgrijs"
-        android:layout_width="130dp"
+        android:layout_width="0dp"
+        android:layout_weight="1"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:layout_marginEnd="60dp"
-        android:layout_marginRight="60dp"
         android:background="@android:color/darker_gray"
         android:text="@string/grijs"
         android:textColor="@color/black"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/broze" />
+        tools:layout_editor_absoluteX="221dp"
+        tools:layout_editor_absoluteY="333dp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_allignParentLeft="true"
+        android:layout_allignparentStart="true"
+        android:layout_marginTop="300dp">
 
     <Button
         android:id="@+id/brood"
-        android:layout_width="130dp"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_marginRight="15dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="60dp"
-        android:layout_marginLeft="60dp"
-        android:layout_marginTop="30dp"
         android:background="@color/red"
         android:text="@string/rood"
         android:textColor="@color/white"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/bzwart" />
+        tools:layout_editor_absoluteX="60dp"
+        tools:layout_editor_absoluteY="409dp" />
 
     <Button
         android:id="@+id/bpaars"
-        android:layout_width="130dp"
+        android:layout_width="0dp"
+        android:layout_weight="1"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:layout_marginEnd="60dp"
-        android:layout_marginRight="60dp"
         android:background="@color/purple"
         android:text="@string/paars"
         android:textColor="@color/white"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/bgrijs" />
+        tools:layout_editor_absoluteX="221dp"
+        tools:layout_editor_absoluteY="410dp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_allignParentLeft="true"
+        android:layout_allignparentStart="true"
+        android:layout_marginTop="360dp">
 
     <Button
         android:id="@+id/boranje"
-        android:layout_width="130dp"
+        android:layout_width="0dp"
+        android:layout_weight="1"
+        android:layout_marginRight="15dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="60dp"
-        android:layout_marginLeft="60dp"
-        android:layout_marginTop="30dp"
         android:background="@color/orange"
         android:text="@string/oranje"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/brood" />
+        tools:layout_editor_absoluteX="60dp"
+        tools:layout_editor_absoluteY="487dp" />
 
     <Button
         android:id="@+id/bbruin"
-        android:layout_width="130dp"
+        android:layout_width="0dp"
+        android:layout_weight="1"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:layout_marginEnd="60dp"
-        android:layout_marginRight="60dp"
         android:background="@color/brown"
         android:text="@string/bruin"
         android:textColor="@color/white"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/bpaars" />
+        tools:layout_editor_absoluteX="221dp"
+        tools:layout_editor_absoluteY="488dp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_allignParentLeft="true"
+        android:layout_allignparentStart="true"
+        android:layout_marginTop="420dp">
 
     <Button
         android:id="@+id/bbasisthema"
-        android:layout_width="290dp"
+        android:layout_width="0dp"
+        android:layout_weight="1"
         android:layout_height="wrap_content"
-        android:layout_marginStart="60dp"
-        android:layout_marginLeft="60dp"
-        android:layout_marginTop="30dp"
-        android:layout_marginEnd="60dp"
-        android:layout_marginRight="60dp"
         android:background="@color/lightgrey"
         android:text="@string/basisthema"
         android:textColor="@color/black"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/boranje" />
+        tools:layout_editor_absoluteX="61dp"
+        tools:layout_editor_absoluteY="565dp" />
 
-</android.support.constraint.ConstraintLayout>
+    </LinearLayout>
+
+</RelativeLayout>
