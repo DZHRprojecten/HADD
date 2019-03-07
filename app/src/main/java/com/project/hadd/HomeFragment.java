@@ -23,7 +23,7 @@ import android.widget.ListView;
 
 import java.util.ArrayList;
 
-public class MessageFragment extends Fragment implements View.OnClickListener {
+public class HomeFragment extends Fragment implements View.OnClickListener {
 
     private static final String TAG = "MainActivity";
     private Button button;
