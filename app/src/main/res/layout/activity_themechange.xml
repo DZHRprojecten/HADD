@@ -26,7 +26,9 @@
         android:layout_marginTop="30dp"
         android:layout_marginEnd="60dp"
         android:layout_marginRight="60dp"
+        android:background="@color/lightgreen"
         android:text="@string/lichtgroen"
+        android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/blichtblauw" />
 
@@ -50,7 +52,9 @@
         android:layout_marginStart="60dp"
         android:layout_marginLeft="60dp"
         android:layout_marginTop="30dp"
+        android:background="@color/darkgreen"
         android:text="@string/donkergroen"
+        android:textColor="@color/white"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/bdonkerblauw" />
 
@@ -61,7 +65,9 @@
         android:layout_marginStart="60dp"
         android:layout_marginLeft="60dp"
         android:layout_marginTop="30dp"
+        android:background="@color/yellow"
         android:text="@string/geel"
+        android:textColor="@color/black"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/bdonkergroen" />
 
@@ -72,7 +78,9 @@
         android:layout_marginTop="30dp"
         android:layout_marginEnd="60dp"
         android:layout_marginRight="60dp"
+        android:background="@color/pink"
         android:text="@string/roze"
+        android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/blichtgroen" />
 
@@ -83,7 +91,9 @@
         android:layout_marginStart="60dp"
         android:layout_marginLeft="60dp"
         android:layout_marginTop="30dp"
+        android:background="@color/black"
         android:text="@string/zwart"
+        android:textColor="@color/white"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/bgeel" />
 
@@ -94,7 +104,9 @@
         android:layout_marginTop="30dp"
         android:layout_marginEnd="60dp"
         android:layout_marginRight="60dp"
+        android:background="@android:color/darker_gray"
         android:text="@string/grijs"
+        android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/broze" />
 
@@ -105,7 +117,9 @@
         android:layout_marginStart="60dp"
         android:layout_marginLeft="60dp"
         android:layout_marginTop="30dp"
+        android:background="@color/red"
         android:text="@string/rood"
+        android:textColor="@color/white"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/bzwart" />
 
@@ -116,7 +130,9 @@
         android:layout_marginTop="30dp"
         android:layout_marginEnd="60dp"
         android:layout_marginRight="60dp"
+        android:background="@color/purple"
         android:text="@string/paars"
+        android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/bgrijs" />
 
@@ -127,6 +143,7 @@
         android:layout_marginStart="60dp"
         android:layout_marginLeft="60dp"
         android:layout_marginTop="30dp"
+        android:background="@color/orange"
         android:text="@string/oranje"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/brood" />
@@ -138,7 +155,9 @@
         android:layout_marginTop="30dp"
         android:layout_marginEnd="60dp"
         android:layout_marginRight="60dp"
+        android:background="@color/brown"
         android:text="@string/bruin"
+        android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/bpaars" />
 
@@ -151,7 +170,9 @@
         android:layout_marginTop="30dp"
         android:layout_marginEnd="60dp"
         android:layout_marginRight="60dp"
+        android:background="@color/lightgrey"
         android:text="@string/basisthema"
+        android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/boranje" />
