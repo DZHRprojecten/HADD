@@ -27,7 +27,6 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
 
     private static final String TAG = "MainActivity";
     private Button button;
-    Button btnEnableDisable_Discoverable;
     Button btnFindUnpairedDevices;
     BluetoothAdapter mBluetoothAdapter;
 
@@ -42,14 +41,11 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_message, container, false);
         button = view.findViewById(R.id.Connectionbutton);
-        btnEnableDisable_Discoverable = view.findViewById(R.id.btnDiscoverable_on_off);
         btnFindUnpairedDevices = view.findViewById(R.id.btnFindUnpairedDevices);
         lvNewDevices = view.findViewById(R.id.lvNewDevices);
         mBTDevices = new ArrayList<>();
 
         mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
-
-        btnEnableDisable_Discoverable.setOnClickListener(this);
         btnFindUnpairedDevices.setOnClickListener(this);
 
         button.setOnClickListener(new View.OnClickListener() {
@@ -87,37 +83,6 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                     }
                 }
             };
-
-    private final BroadcastReceiver mBroadcastReceiver2 = new BroadcastReceiver() {
-
-        @Override
-        public void onReceive(Context context, Intent intent) {
-            final String action = intent.getAction();
-
-            if (action.equals(BluetoothAdapter.ACTION_SCAN_MODE_CHANGED)) {
-
-                int mode = intent.getIntExtra(BluetoothAdapter.EXTRA_SCAN_MODE, BluetoothAdapter.ERROR);
-
-                switch (mode) {
-                    case BluetoothAdapter.SCAN_MODE_CONNECTABLE_DISCOVERABLE:
-                        Log.d(TAG, "mBroadcastReceiver2: Discoverability Enabled");
-                        break;
-                    case BluetoothAdapter.SCAN_MODE_CONNECTABLE:
-                        Log.d(TAG, "mBroadcastReceiver2: Discoverability Disabled. Able to receive connections.");
-                        break;
-                    case BluetoothAdapter.SCAN_MODE_NONE:
-                        Log.d(TAG, "mBroadcastReceiver2: Discoverability Disabled. Not able to receive connections.");
-                        break;
-                    case BluetoothAdapter.STATE_CONNECTING:
-                        Log.d(TAG, "mBroadcastReceiver2: Connecting....");
-                        break;
-                    case BluetoothAdapter.STATE_CONNECTED:
-                        Log.d(TAG, "mBroadcastReceiver2: Connected.");
-                        break;
-                }
-            }
-        }
-    };
 
     private BroadcastReceiver mBroadcastReceiver3 = new BroadcastReceiver() {
         @Override
@@ -167,9 +132,6 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     public void onClick(View v) {
         Log.d(TAG, " v id = " + v.getId());
         switch (v.getId()) {
-            case R.id.btnDiscoverable_on_off:
-                btnEnableDisable_Discoverable(v);
-                break;
             case R.id.btnFindUnpairedDevices:
                 btnDiscover(v);
                 break;
@@ -195,17 +157,6 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
             IntentFilter BTIntent = new IntentFilter(BluetoothAdapter.ACTION_STATE_CHANGED);
             mActivity.registerReceiver(mBroadcastReceiver1, BTIntent);
         }
-    }
-
-    public void btnEnableDisable_Discoverable(View view) {
-        Log.d(TAG, "btnEnableDisable_Discoverable: Making device discoverable for 300 seconds.");
-
-        Intent discoverableIntent = new Intent(BluetoothAdapter.ACTION_REQUEST_DISCOVERABLE);
-        discoverableIntent.putExtra(BluetoothAdapter.EXTRA_DISCOVERABLE_DURATION, 300);
-        startActivity(discoverableIntent);
-
-        IntentFilter intentFilter = new IntentFilter(mBluetoothAdapter.ACTION_SCAN_MODE_CHANGED);
-        mActivity.registerReceiver(mBroadcastReceiver2, intentFilter);
     }
 
     @RequiresApi(api = Build.VERSION_CODES.M)
