@@ -9,6 +9,9 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
+import android.os.Bundle;
+import android.app.Activity;
+import android.view.View;
 
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
@@ -67,4 +70,47 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             super.onBackPressed();
         }
     }
+
+   /* @Override
+    public void onCreate(Bundle savedInstanceState)
+    {
+
+        super.onCreate(savedInstanceState);
+
+        themeUtils.onActivityCreateSetTheme(this);
+
+        setContentView(R.layout.activity_main);
+
+        findViewById(R.id.bzwart).setOnClickListener(this);
+
+        findViewById(R.id.bdonkerblauw).setOnClickListener(this);
+    }
+
+    @Override
+
+    public void onClick(View v)
+
+    {
+
+        switch (v.getId())
+
+        {
+
+            case R.id.bzwart:
+
+                themeUtils.changeToTheme(this, themeUtils.BLACK);
+
+                break;
+
+            case R.id.bdonkerblauw:
+
+                themeUtils.changeToTheme(this, themeUtils.BLUE);
+
+                break;
+
+        }
+
+    }*/
+
 }
+

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+<style name="BlackTheme" >
+
+<item name="android:background">@color/black</item>
+
+<item name="android:textColor">@color/white</item>
+
+</style>
+
+<style name="DarkBlueTheme" >
+
+<item name="android:background">@color/darkblue</item>
+
+<item name="android:textColor">@color/white</item>
+
+</style>
+
+</resources>
