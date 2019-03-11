@@ -1,5 +1,6 @@
 package com.project.hadd;
 
+import android.content.res.TypedArray;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
@@ -9,9 +10,6 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
-import android.os.Bundle;
-import android.app.Activity;
-import android.view.View;
 
 /**
  * MainActivity class handles the main navigation trough the application
@@ -34,6 +32,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        ThemeUtils.onActivityCreateSetTheme(this);
+
+        TypedArray typedArray = this.getTheme().obtainStyledAttributes(R.styleable.ViewStyle);
+        int themeColor = typedArray.getColor(R.styleable.ViewStyle_theme_color, 1);
+        int themeTextColor = typedArray.getColor(R.styleable.ViewStyle_theme_text_color, 2);
+
         setContentView(R.layout.activity_main);
 
         Toolbar toolbar = findViewById(R.id.toolbar);
@@ -69,7 +73,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new Themechange()).commit();
                 break;
             case R.id.nav_profile:
-                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new ProfileFragment()).commit();
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new AboutFragment()).commit();
                 break;
         }
 
@@ -90,47 +94,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     // endregion
-
-   /* @Override
-    public void onCreate(Bundle savedInstanceState)
-    {
-
-        super.onCreate(savedInstanceState);
-
-        ThemeUtils.onActivityCreateSetTheme(this);
-
-        setContentView(R.layout.activity_main);
-
-        findViewById(R.id.bzwart).setOnClickListener(this);
-
-        findViewById(R.id.bdonkerblauw).setOnClickListener(this);
-    }
-
-    @Override
-
-    public void onClick(View v)
-
-    {
-
-        switch (v.getId())
-
-        {
-
-            case R.id.bzwart:
-
-                ThemeUtils.changeToTheme(this, ThemeUtils.BLACK);
-
-                break;
-
-            case R.id.bdonkerblauw:
-
-                ThemeUtils.changeToTheme(this, ThemeUtils.BLUE);
-
-                break;
-
-        }
-
-    }*/
 
 }
 

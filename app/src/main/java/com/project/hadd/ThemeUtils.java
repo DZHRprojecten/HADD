@@ -35,17 +35,11 @@ public class ThemeUtils {
     public static void onActivityCreateSetTheme(Activity activity) {
         switch (cTheme) {
             default:
-
             case BLACK:
-
                 activity.setTheme(R.style.BlackTheme);
-
                 break;
-
             case BLUE:
-
                 activity.setTheme(R.style.DarkBlueTheme);
-
                 break;
         }
     }
