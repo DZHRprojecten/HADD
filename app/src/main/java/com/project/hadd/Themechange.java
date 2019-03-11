@@ -9,8 +9,17 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+/**
+ * Settings page that changes the application design
+ */
 public class Themechange extends Fragment {
 
+    /**
+     * @param inflater           LayoutInflater
+     * @param container          ViewGroup
+     * @param savedInstanceState Bundle
+     * @return View
+     */
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {

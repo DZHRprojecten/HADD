@@ -13,15 +13,24 @@ import android.os.Bundle;
 import android.app.Activity;
 import android.view.View;
 
+/**
+ * MainActivity class handles the main navigation trough the application
+ */
 public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+
+    // region: fields
 
     private DrawerLayout drawer;
 
-    //region: tmp
-
-
     // endregion
 
+    // region: methods
+
+    /**
+     * initialization of fragment
+     *
+     * @param savedInstanceState Bundle
+     */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -44,6 +53,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
     }
 
+    /**
+     * This method handles the navigation between fragments
+     *
+     * @param item MenuItem
+     * @return bool
+     */
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         switch (item.getItemId()) {
@@ -62,6 +77,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         return true;
     }
 
+    /**
+     * This method presents the back button from closing the app.
+     */
     @Override
     public void onBackPressed() {
         if (drawer.isDrawerOpen(GravityCompat.START)) {
@@ -71,13 +89,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
     }
 
+    // endregion
+
    /* @Override
     public void onCreate(Bundle savedInstanceState)
     {
 
         super.onCreate(savedInstanceState);
 
-        themeUtils.onActivityCreateSetTheme(this);
+        ThemeUtils.onActivityCreateSetTheme(this);
 
         setContentView(R.layout.activity_main);
 
@@ -98,13 +118,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
             case R.id.bzwart:
 
-                themeUtils.changeToTheme(this, themeUtils.BLACK);
+                ThemeUtils.changeToTheme(this, ThemeUtils.BLACK);
 
                 break;
 
             case R.id.bdonkerblauw:
 
-                themeUtils.changeToTheme(this, themeUtils.BLUE);
+                ThemeUtils.changeToTheme(this, ThemeUtils.BLUE);
 
                 break;
 
