@@ -2,16 +2,13 @@ package com.project.hadd;
 
 import android.os.Build;
 import android.os.Bundle;
-import android.app.Activity;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.annotation.RequiresApi;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 
 import java.util.Objects;
 
@@ -30,40 +27,67 @@ public class Themechange extends Fragment implements View.OnClickListener {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.activity_themechange, container, false);
-        Button blue = view.findViewById(R.id.bdonkerblauw);
-        view.findViewById(R.id.blichtblauw);
-        view.findViewById(R.id.bdonkergroen);
-        view.findViewById(R.id.blichtgroen);
-        view.findViewById(R.id.bgeel);
-        view.findViewById(R.id.broze);
-        view.findViewById(R.id.bzwart);
-        view.findViewById(R.id.bgrijs);
-        view.findViewById(R.id.brood);
-        view.findViewById(R.id.bpaars);
-        view.findViewById(R.id.boranje);
-        view.findViewById(R.id.bbruin);
-        view.findViewById(R.id.bbasisthema);
 
-        blue.setOnClickListener(new View.OnClickListener() {
-            @RequiresApi(api = Build.VERSION_CODES.KITKAT)
-            @Override
-            public void onClick(View v) {
-                ThemeUtils.changeToTheme(Objects.requireNonNull(getActivity()), ThemeUtils.BLUE);
-            }
-        });
+        view.findViewById(R.id.darkBlue).setOnClickListener(this);
+        view.findViewById(R.id.lightBlue).setOnClickListener(this);
+        view.findViewById(R.id.darkGreen).setOnClickListener(this);
+        view.findViewById(R.id.lightGreen).setOnClickListener(this);
+        view.findViewById(R.id.yellow).setOnClickListener(this);
+        view.findViewById(R.id.pink).setOnClickListener(this);
+        view.findViewById(R.id.black).setOnClickListener(this);
+        view.findViewById(R.id.grey).setOnClickListener(this);
+        view.findViewById(R.id.red).setOnClickListener(this);
+        view.findViewById(R.id.purple).setOnClickListener(this);
+        view.findViewById(R.id.orange).setOnClickListener(this);
+        view.findViewById(R.id.brown).setOnClickListener(this);
+        view.findViewById(R.id.defaultTheme).setOnClickListener(this);
+
         return view;
     }
 
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
     public void onClick(View v) {
-        Log.d("ThemeChange", "----------------------------- Them has been changed" + Objects.requireNonNull(getActivity()));
         switch (v.getId()) {
-            case R.id.bzwart:
+            case R.id.darkBlue:
+                ThemeUtils.changeToTheme(Objects.requireNonNull(getActivity()), ThemeUtils.DARK_BLUE);
+                break;
+            case R.id.lightBlue:
+                ThemeUtils.changeToTheme(Objects.requireNonNull(getActivity()), ThemeUtils.LIGHT_BLUE);
+                break;
+            case R.id.darkGreen:
+                ThemeUtils.changeToTheme(Objects.requireNonNull(getActivity()), ThemeUtils.DARK_GREEN);
+                break;
+            case R.id.lightGreen:
+                ThemeUtils.changeToTheme(Objects.requireNonNull(getActivity()), ThemeUtils.LIGHT_GREEN);
+                break;
+            case R.id.yellow:
+                ThemeUtils.changeToTheme(Objects.requireNonNull(getActivity()), ThemeUtils.YELLOW);
+                break;
+            case R.id.pink:
+                ThemeUtils.changeToTheme(Objects.requireNonNull(getActivity()), ThemeUtils.PINK);
+                break;
+            case R.id.black:
                 ThemeUtils.changeToTheme(Objects.requireNonNull(getActivity()), ThemeUtils.BLACK);
                 break;
-            case R.id.bdonkerblauw:
-                ThemeUtils.changeToTheme(Objects.requireNonNull(getActivity()), ThemeUtils.BLUE);
+            case R.id.grey:
+                ThemeUtils.changeToTheme(Objects.requireNonNull(getActivity()), ThemeUtils.GREY);
+                break;
+            case R.id.red:
+                ThemeUtils.changeToTheme(Objects.requireNonNull(getActivity()), ThemeUtils.RED);
+                break;
+            case R.id.purple:
+                ThemeUtils.changeToTheme(Objects.requireNonNull(getActivity()), ThemeUtils.PURPLE);
+                break;
+            case R.id.orange:
+                ThemeUtils.changeToTheme(Objects.requireNonNull(getActivity()), ThemeUtils.ORANGE);
+                break;
+            case R.id.brown:
+                ThemeUtils.changeToTheme(Objects.requireNonNull(getActivity()), ThemeUtils.BROWN);
+                break;
+            default:
+            case R.id.defaultTheme:
+                ThemeUtils.changeToTheme(Objects.requireNonNull(getActivity()), ThemeUtils.DEFAULT);
                 break;
         }
     }
