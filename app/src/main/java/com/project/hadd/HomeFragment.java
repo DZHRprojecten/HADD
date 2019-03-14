@@ -90,7 +90,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
             final String action = intent.getAction();
             Log.d(TAG, "onReceive: ACTION FOUND.");
 
-            if (action.equals(BluetoothDevice.ACTION_FOUND)) {
+            if (BluetoothDevice.ACTION_FOUND.equals(action)) {
                 BluetoothDevice device = intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
                 mBTDevices.add(device);
                 Log.d(TAG, "onReceive: " + device.getName() + ": " + device.getAddress());
@@ -104,7 +104,6 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     public void onDestroyView() {
         Log.d(TAG, "onDestroy: called.");
         super.onDestroyView();
-
         try {
             mActivity.unregisterReceiver(mBroadcastReceiver1);
         } catch (Exception e) {
@@ -186,14 +185,12 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
 
     @RequiresApi(api = Build.VERSION_CODES.M)
     private void checkBTPermissions() {
-        if (Build.VERSION.SDK_INT > Build.VERSION_CODES.LOLLIPOP) {
-            int permissionCheck = mActivity.checkSelfPermission("Manifest.permission.ACCESS_FINE_LOCATION");
-            permissionCheck += mActivity.checkSelfPermission("Manifest.permission.ACCESS_COURSE_LOCATION");
-            if (permissionCheck != 0) {
-                this.requestPermissions(new String[]{Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION}, 1001);
-            } else {
-                Log.d(TAG, "checkBTPermissions: No need to check permissions. SDK version < LOLLIPOP.");
-            }
+        int permissionCheck = mActivity.checkSelfPermission("Manifest.permission.ACCESS_FINE_LOCATION");
+        permissionCheck += mActivity.checkSelfPermission("Manifest.permission.ACCESS_COURSE_LOCATION");
+        if (permissionCheck != 0) {
+            this.requestPermissions(new String[]{Manifest.permission.ACCESS_FINE_LOCATION, Manifest.permission.ACCESS_COARSE_LOCATION}, 1001);
+        } else {
+            Log.d(TAG, "checkBTPermissions: No need to check permissions. SDK version < LOLLIPOP.");
         }
     }
 }

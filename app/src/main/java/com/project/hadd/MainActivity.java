@@ -1,5 +1,6 @@
 package com.project.hadd;
 
+import android.arch.persistence.room.Room;
 import android.content.res.TypedArray;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -11,6 +12,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.MenuItem;
+
+import com.project.hadd.database.ThemeDatabase;
+import com.project.hadd.database.model.Theme;
 
 /**
  * MainActivity class handles the main navigation trough the application
@@ -59,6 +63,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new HomeFragment()).commit();
             navigationView.setCheckedItem(R.id.nav_home);
         }
+
     }
 
     /**
