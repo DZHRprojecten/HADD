@@ -3,6 +3,10 @@
     <string name="high_definition_audio_detection_director">High-definition Audio Detection Director</string>
     <string name="connect_to_hadd">Connect to HADD</string>
     <string name="title_activity_themechange">Themechange</string>
+    <string name="title_activity_settings">Instellingen</string>
+    <string name="Sleepmodecheckboxtitle">Slaapmodus</string>
+    <string name="Vibrationstrengthtitle">Trillingstterkte</string>
+    <string name="Decibelsregisteredtitle">Decibelregistratie</string>
     <string name="donkerblauw">Donkerblauw</string>
     <string name="lichtblauw">Lichtblauw</string>
     <string name="donkergroen">Donkergroen</string>
@@ -20,6 +24,10 @@
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="thema_veranderen">Thema veranderen</string>
+    <string name="settings">Instellingen</string>
+    <string name="sleepmode">Slaapmodus</string>
+    <string name="trillingssterkte">Trillingssterkte</string>
+    <string name="geluidsregistratie">Ondergrens geregistreerde decibels</string>
     <string name="about">Test fragment Profile</string>
     <string name="over_ons">Over ons</string>
     <string name="over_ons_tekst">Wij zijn de makers van de HADD (High-Definition Audio Detection Director. Wij hebben de HADD vooral gemaakt om auditief beperkte mensen te helpen om toch input van geluid te ervaren. Ons team bestaat uit een paar gedreven studenten van de Hogeschool Rotterdam.</string>

@@ -18,9 +18,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".Settings"></activity>
         <activity
             android:name=".Themechange"
-            android:label="@string/title_activity_themechange"></activity>
+            android:label="@string/title_activity_themechange" />
         <activity
             android:name=".MainActivity"
             android:theme="@style/AppTheme.NoActionBar">

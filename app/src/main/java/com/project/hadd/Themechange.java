@@ -57,7 +57,7 @@ public class Themechange extends Fragment implements View.OnClickListener {
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Override
     public void onClick(View v) {
-        Log.d("ThemeChange", "----------------------------- Them has been changed" + Objects.requireNonNull(getActivity()));
+        Log.d("ThemeChange", "----------------------------- Theme has been changed" + Objects.requireNonNull(getActivity()));
         switch (v.getId()) {
             case R.id.bzwart:
                 ThemeUtils.changeToTheme(Objects.requireNonNull(getActivity()), ThemeUtils.BLACK);
