@@ -6,9 +6,64 @@
         <item name="theme_text_color">@color/white</item>
     </style>
 
-    <style name="DarkBlueTheme">
+    <style name="DarkBlueTheme" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
         <item name="theme_color">@color/darkblue</item>
-        <item name="android:textColor">@color/white</item>
+        <item name="theme_text_color">@color/white</item>
+    </style>
+
+    <style name="LightBlueTheme" parent="ThemeOverlay.AppCompat.Light">
+        <item name="theme_color">@color/lightblue</item>
+        <item name="theme_text_color">@color/black</item>
+    </style>
+
+    <style name="DarkGreenTheme" parent="ThemeOverlay.AppCompat.Dark.ActionBar">
+        <item name="theme_color">@color/darkgreen</item>
+        <item name="theme_text_color">@color/white</item>
+    </style>
+
+    <style name="LightGreenTheme" parent="ThemeOverlay.AppCompat.Light">
+        <item name="theme_color">@color/lightgreen</item>
+        <item name="theme_text_color">@color/black</item>
+    </style>
+
+    <style name="YellowTheme" parent="ThemeOverlay.AppCompat.Light">
+        <item name="theme_color">@color/yellow</item>
+        <item name="theme_text_color">@color/black</item>
+    </style>
+
+    <style name="PinkTheme" parent="ThemeOverlay.AppCompat.Light">
+        <item name="theme_color">@color/pink</item>
+        <item name="theme_text_color">@color/black</item>
+    </style>
+
+    <style name="GreyTheme" parent="ThemeOverlay.AppCompat.Light">
+        <item name="theme_color">@color/grey</item>
+        <item name="theme_text_color">@color/black</item>
+    </style>
+
+    <style name="RedTheme" parent="ThemeOverlay.AppCompat.Light">
+        <item name="theme_color">@color/red</item>
+        <item name="theme_text_color">@color/white</item>
+    </style>
+
+    <style name="PurpleTheme" parent="ThemeOverlay.AppCompat.Light">
+        <item name="theme_color">@color/purple</item>
+        <item name="theme_text_color">@color/black</item>
+    </style>
+
+    <style name="OrangeTme" parent="ThemeOverlay.AppCompat.Light">
+        <item name="theme_color">@color/orange</item>
+        <item name="theme_text_color">@color/black</item>
+    </style>
+
+    <style name="BrownTheme" parent="ThemeOverlay.AppCompat.Light">
+        <item name="theme_color">@color/brown</item>
+        <item name="theme_text_color">@color/black</item>
+    </style>
+
+    <style name="DefaultTheme" parent="ThemeOverlay.AppCompat.Light">
+        <item name="theme_color">@color/colorPrimary</item>
+        <item name="theme_text_color">@color/black</item>
     </style>
 
 </resources>
