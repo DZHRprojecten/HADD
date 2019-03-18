@@ -26,7 +26,7 @@ import java.util.concurrent.Future;
 import static android.content.ContentValues.TAG;
 
 /**
- * Settings page that changes the application design
+ * SettingsFragment page that changes the application design
  */
 public class Themechange extends Fragment implements View.OnClickListener {
 
