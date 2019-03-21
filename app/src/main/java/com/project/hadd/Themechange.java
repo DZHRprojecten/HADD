@@ -20,7 +20,7 @@ import com.project.hadd.database.repository.ThemeRepository;
 import java.util.Objects;
 
 /**
- * Settings page that changes the application design
+ * SettingsFragment page that changes the application design
  */
 public class Themechange extends Fragment implements View.OnClickListener {
 

@@ -18,12 +18,13 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 
 import java.util.ArrayList;
 
-public class HomeFragment extends Fragment implements View.OnClickListener {
+public class HomeFragment extends Fragment implements View.OnClickListener, AdapterView.OnItemClickListener {
 
     private static final String TAG = "MainActivity";
     private Button button;
@@ -45,7 +46,13 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         lvNewDevices = view.findViewById(R.id.lvNewDevices);
         mBTDevices = new ArrayList<>();
 
+        IntentFilter filter = new IntentFilter(BluetoothDevice.ACTION_BOND_STATE_CHANGED);
+        registerReceiver(mBroadcastReceiver4, filter);
+
         mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
+
+        lvNewDevices.setOnItemClickListener(HomeFragment.this);
+
         btnFindUnpairedDevices.setOnClickListener(this);
 
         button.setOnClickListener(new View.OnClickListener() {
@@ -56,6 +63,9 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
             }
         });
         return view;
+    }
+
+    private void registerReceiver(BroadcastReceiver mBroadcastReceiver4, IntentFilter filter) {
     }
 
     // Create a BroadcastReceiver for ACTION_FOUND.
@@ -100,15 +110,44 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         }
     };
 
+    private final BroadcastReceiver mBroadcastReceiver4 = new BroadcastReceiver() {
+        @Override
+        public void onReceive(Context context, Intent intent) {
+            final String action = intent.getAction();
+            if(action.equals(BluetoothDevice.ACTION_BOND_STATE_CHANGED)){
+                BluetoothDevice mDevice = intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
+                //3 cases:
+                //case 1: bonded already
+                if(mDevice.getBondState() == BluetoothDevice.BOND_BONDED){
+                    Log.d(TAG, "BroadcastReceiver: BOND_BONDED.");
+                }//case 2: creating a bond
+                if(mDevice.getBondState() == BluetoothDevice.BOND_BONDING){
+                    Log.d(TAG, "BroadcastReceiver: BOND_BONDING.");
+                }//case 3: breaking a bond
+                if(mDevice.getBondState() == BluetoothDevice.BOND_NONE){
+                    Log.d(TAG, "BroadcastReceiver: BOND_NONE.");
+                }
+
+            }
+        }
+    };
+
     @Override
     public void onDestroyView() {
         Log.d(TAG, "onDestroy: called.");
         super.onDestroyView();
-        try {
+        
+        unregisterReceiver(mBroadcastReceiver1);
+        unregisterReceiver(mBroadcastReceiver3);
+        unregisterReceiver(mBroadcastReceiver4);
+        /*try {
             mActivity.unregisterReceiver(mBroadcastReceiver1);
         } catch (Exception e) {
             e.printStackTrace();
-        }
+        }*/
+    }
+
+    private void unregisterReceiver(BroadcastReceiver mBroadcastReceiver4) {
     }
 
     @Override
@@ -192,5 +231,26 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         } else {
             Log.d(TAG, "checkBTPermissions: No need to check permissions. SDK version < LOLLIPOP.");
         }
+    }
+
+    @Override
+    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+        //first cancel discovery because it's very memory intensive
+        mBluetoothAdapter.cancelDiscovery();
+
+        Log.d(TAG, "onItemClick: You clicked on a device.");
+        String deviceName = mBTDevices.get(i).getName();
+        String deviceAddress = mBTDevices.get(i).getAddress();
+
+        Log.d(TAG, "onItemClick: deviceName = " + deviceName);
+        Log.d(TAG, "onItemClick: deviceAddress = " + deviceAddress);
+
+        //create the bond
+        //requires API 17+, Jellybean
+        if(Build.VERSION.SDK_INT > Build.VERSION_CODES.JELLY_BEAN_MR2){
+            Log.d(TAG, "Trying to pair with " + deviceName);
+            mBTDevices.get(i).createBond();
+        }
+
     }
 }

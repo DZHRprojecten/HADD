@@ -56,7 +56,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             }
         });
 
-        ThemeUtils.onActivityCreateSetTheme(this);
+        ThemeUtils.onActivityCreateSetTheme(MainActivity.this);
 
         TypedArray typedArray = this.getTheme().obtainStyledAttributes(R.styleable.ViewStyle);
         int themeColor = typedArray.getColor(R.styleable.ViewStyle_theme_color, 1);
@@ -102,6 +102,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 break;
             case R.id.nav_profile:
                 getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new AboutFragment()).commit();
+                break;
+            case R.id.nav_settings:
+                getSupportFragmentManager().beginTransaction().replace(R.id.fragment_container, new SettingsFragment()).commit();
                 break;
         }
 

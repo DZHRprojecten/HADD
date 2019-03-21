@@ -3,6 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.project.hadd">
 
+    <uses-feature android:name="android.hardware.bluetooth" />
     <uses-permission android:name="android.permission.BLUETOOTH" />
     <uses-permission android:name="android.permission.BLUETOOTH_ADMIN" />
     <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
@@ -18,9 +19,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".SettingsFragment"></activity>
         <activity
             android:name=".Themechange"
-            android:label="@string/title_activity_themechange"></activity>
+            android:label="@string/title_activity_themechange" />
         <activity
             android:name=".MainActivity"
             android:theme="@style/AppTheme.NoActionBar">
