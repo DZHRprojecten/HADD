@@ -1,9 +1,11 @@
 package com.project.hadd;
 
-import android.arch.persistence.room.Room;
+import android.arch.lifecycle.LiveData;
+import android.arch.lifecycle.Observer;
 import android.content.res.TypedArray;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -15,6 +17,7 @@ import android.view.MenuItem;
 
 import com.project.hadd.database.ThemeDatabase;
 import com.project.hadd.database.model.Theme;
+import com.project.hadd.database.repository.ThemeRepository;
 
 /**
  * MainActivity class handles the main navigation trough the application
@@ -29,6 +32,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     // region: methods
 
+
     /**
      * initialization of fragment
      *
@@ -37,6 +41,21 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        ThemeDatabase themeDatabase = ThemeDatabase.getInstance(MainActivity.this.getApplication());
+        ThemeRepository themeRepository = new ThemeRepository(ThemeDatabase.getInstance(MainActivity.this.getApplicationContext()));
+
+        LiveData<Theme> theme = themeRepository.getThemeById(1);
+        theme.observe(MainActivity.this, new Observer<Theme>() {
+            @Override
+            public void onChanged(@Nullable Theme theme) {
+                if (theme != null) {
+                    Log.d("SUPERDUPER", "onChanged: " + theme.getThemeName());
+                    ThemeUtils.setcTheme(theme.getThemeName());
+                }
+            }
+        });
+
         ThemeUtils.onActivityCreateSetTheme(this);
 
         TypedArray typedArray = this.getTheme().obtainStyledAttributes(R.styleable.ViewStyle);

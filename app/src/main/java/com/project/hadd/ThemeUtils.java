@@ -91,4 +91,49 @@ public class ThemeUtils {
 
     // endregion
 
+    public static void setcTheme(int cTheme) {
+        switch (cTheme) {
+            case BLACK:
+                ThemeUtils.cTheme = BLACK;
+                break;
+            case DARK_BLUE:
+                ThemeUtils.cTheme = DARK_BLUE;
+                break;
+            case LIGHT_BLUE:
+                ThemeUtils.cTheme = LIGHT_BLUE;
+                break;
+            case DARK_GREEN:
+                ThemeUtils.cTheme = DARK_GREEN;
+                break;
+            case LIGHT_GREEN:
+                ThemeUtils.cTheme = LIGHT_GREEN;
+                break;
+            case YELLOW:
+                ThemeUtils.cTheme = YELLOW;
+                break;
+            case PINK:
+                ThemeUtils.cTheme = PINK;
+                break;
+            case GREY:
+                ThemeUtils.cTheme = GREY;
+                break;
+            case RED:
+                ThemeUtils.cTheme = RED;
+                break;
+            case PURPLE:
+                ThemeUtils.cTheme = PURPLE;
+                break;
+            case ORANGE:
+                ThemeUtils.cTheme = ORANGE;
+                break;
+            case BROWN:
+                ThemeUtils.cTheme = BROWN;
+                break;
+            default:
+            case DEFAULT:
+                ThemeUtils.cTheme = DEFAULT;
+                break;
+        }
+
+    }
 }

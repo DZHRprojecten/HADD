@@ -1,6 +1,7 @@
 package com.project.hadd;
 
-import android.arch.persistence.room.Room;
+import android.arch.lifecycle.LiveData;
+import android.arch.lifecycle.Observer;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -14,16 +15,9 @@ import android.view.ViewGroup;
 
 import com.project.hadd.database.ThemeDatabase;
 import com.project.hadd.database.model.Theme;
+import com.project.hadd.database.repository.ThemeRepository;
 
 import java.util.Objects;
-import java.util.concurrent.Callable;
-import java.util.concurrent.ExecutionException;
-import java.util.concurrent.Executor;
-import java.util.concurrent.ExecutorService;
-import java.util.concurrent.Executors;
-import java.util.concurrent.Future;
-
-import static android.content.ContentValues.TAG;
 
 /**
  * Settings page that changes the application design
@@ -34,6 +28,7 @@ public class Themechange extends Fragment implements View.OnClickListener {
 
     private static final String DATABASE_NAME = "themes_db";
     private ThemeDatabase themeDatabase;
+    private int colorBtnId;
 
     // endregion
 
@@ -46,8 +41,7 @@ public class Themechange extends Fragment implements View.OnClickListener {
     @RequiresApi(api = Build.VERSION_CODES.KITKAT)
     @Nullable
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup
-            container, @Nullable Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         final View view = inflater.inflate(R.layout.activity_themechange, container, false);
 
         view.findViewById(R.id.darkBlue).setOnClickListener(this);
@@ -67,19 +61,17 @@ public class Themechange extends Fragment implements View.OnClickListener {
         // region: database
 
         // TODO:: REMOVE FOR PRODUCTION RELEASE
-        themeDatabase = Room.databaseBuilder(Objects.requireNonNull(getActivity()).getApplicationContext(), ThemeDatabase.class, DATABASE_NAME)
-                .fallbackToDestructiveMigration()
-                .build();
+        themeDatabase = ThemeDatabase.getInstance(Objects.requireNonNull(getActivity()).getApplication());
 
-        new Thread(new Runnable() {
+        ThemeRepository themeRepository = new ThemeRepository(ThemeDatabase.getInstance(Objects.requireNonNull(getActivity()).getApplicationContext()));
+
+        LiveData<Theme> theme = themeRepository.getThemeById(1);
+        theme.observe(getActivity(), new Observer<Theme>() {
             @Override
-            public void run() {
-                Theme theme = new Theme();
-                theme.setThemeId("1");
-                theme.setThemeName(R.id.brown);
-                themeDatabase.daoTheme().insertOnlySingleTheme(theme);
+            public void onChanged(@Nullable Theme theme) {
+                colorBtnId = theme != null ? theme.getThemeName() : 0;
             }
-        }).start();
+        });
 
         // endregion
 
@@ -91,32 +83,14 @@ public class Themechange extends Fragment implements View.OnClickListener {
     public void onClick(final View v) {
         Log.d("TAG", "onClick called on themeChange");
 
+        ThemeRepository themeRepository = new ThemeRepository(ThemeDatabase.getInstance(Objects.requireNonNull(getActivity()).getApplicationContext()));
+        themeRepository.insertOrReplaceTheme(new Theme(1, v.getId()));
 
-        ExecutorService executor = Executors.newSingleThreadExecutor();
-        Callable<Theme> currentThemeCallable = new Callable<Theme>() {
-            @Override
-            public Theme call() {
-                return themeDatabase.daoTheme().fetchOneThemesbyThemeName(v.getId());
-            }
-        };
-        Future<Theme> currentTheme = executor.submit(currentThemeCallable);
-
-        try {
-            Log.d(TAG, "onClick: " + currentTheme.get());
-            if (currentTheme.get() != null) {
-                Log.d(TAG, "onClick: " + v.getId());
-                v.setId(currentTheme.get().getThemeName());
-                Log.d(TAG, "onClick: " + v.getId());
-            }
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (ExecutionException e) {
-            e.printStackTrace();
+        if (colorBtnId != 0) {
+            colorBtnId = v.getId();
         }
-        executor.shutdown();
 
-        Log.d(TAG, "onClick: ---- " + v.getId());
-        switch (v.getId()) {
+        switch (colorBtnId) {
             case R.id.darkBlue:
                 ThemeUtils.changeToTheme(Objects.requireNonNull(getActivity()), ThemeUtils.DARK_BLUE);
                 break;

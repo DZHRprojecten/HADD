@@ -1,5 +1,6 @@
 package com.project.hadd.database.dao;
 
+import android.arch.lifecycle.LiveData;
 import android.arch.persistence.room.Dao;
 import android.arch.persistence.room.Delete;
 import android.arch.persistence.room.Insert;
@@ -14,21 +15,34 @@ import java.util.List;
 @Dao
 public interface DaoTheme {
 
+    // region: select
+
+    @Query("SELECT * FROM Theme")
+    Theme[] getAllThemes();
+
+    // endregion
+
+
+    // region: insert
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    void insertOnlySingleTheme(Theme theme);
+    void insertOrReplaceTheme(Theme theme);
+
+    // endregion
 
     @Insert
     void insertMultipleThemes(List<Theme> themeList);
 
-    @Query("SELECT*FROM Theme WHERE themeId =:themeId")
-    Theme fetchOneThemesbyThemeId(int themeId);
+    @Query("SELECT * FROM Theme WHERE themeId = :themeId")
+    LiveData<Theme> getThemeById(int themeId);
 
-    @Query("SELECT*FROM Theme WHERE themeName =:themeName")
-    Theme fetchOneThemesbyThemeName(int themeName);
+    @Query("SELECT * FROM Theme WHERE theme_name = :themeName")
+    LiveData<Theme> getThemeByName(int themeName);
 
     @Update
     void updateTheme(Theme movies);
 
     @Delete
     void deleteTheme(Theme movies);
+
 }
