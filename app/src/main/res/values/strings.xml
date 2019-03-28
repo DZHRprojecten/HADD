@@ -21,6 +21,20 @@
     <string name="bruin">Bruin</string>
     <string name="basisthema">Basisthema</string>
 
+    <string-array name="themes">
+        <item>DrarkBlue</item>
+        <item>LightBlue</item>
+        <item>DarkGreen</item>
+        <item>LightGreen</item>
+        <item>Yellow</item>
+        <item>Pink</item>
+        <item>Purple</item>
+        <item>Orange</item>
+        <item>Grey</item>
+        <item>Brown</item>
+        <item>Default</item>
+    </string-array>
+
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="thema_veranderen">Thema veranderen</string>
