@@ -32,6 +32,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     // region: methods
 
+
     /**
      * initialization of fragment
      *
@@ -40,6 +41,20 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        ThemeDatabase themeDatabase = ThemeDatabase.getInstance(MainActivity.this.getApplication());
+        ThemeRepository themeRepository = new ThemeRepository(ThemeDatabase.getInstance(MainActivity.this.getApplicationContext()));
+
+        LiveData<Theme> theme = themeRepository.getThemeById(1);
+        theme.observe(MainActivity.this, new Observer<Theme>() {
+            @Override
+            public void onChanged(@Nullable Theme theme) {
+                if (theme != null) {
+                    Log.d("SUPERDUPER", "onChanged: " + theme.getThemeName());
+                    ThemeUtils.setcTheme(theme.getThemeName());
+                }
+            }
+        });
 
         ThemeUtils.onActivityCreateSetTheme(MainActivity.this);
 

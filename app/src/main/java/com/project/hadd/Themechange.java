@@ -84,6 +84,7 @@ public class Themechange extends Fragment implements View.OnClickListener {
         Log.d("TAG", "onClick called on themeChange");
 
         ThemeRepository themeRepository = new ThemeRepository(ThemeDatabase.getInstance(Objects.requireNonNull(getActivity()).getApplicationContext()));
+        themeRepository.insertOrReplaceTheme(new Theme(1, v.getId()));
 
         if (colorBtnId != 0) {
             colorBtnId = v.getId();
@@ -91,56 +92,43 @@ public class Themechange extends Fragment implements View.OnClickListener {
 
         switch (colorBtnId) {
             case R.id.darkBlue:
-                themeRepository.insertOrReplaceTheme(new Theme(1, ThemeUtils.DARK_BLUE));
                 ThemeUtils.changeToTheme(Objects.requireNonNull(getActivity()), ThemeUtils.DARK_BLUE);
                 break;
             case R.id.lightBlue:
-                themeRepository.insertOrReplaceTheme(new Theme(1, ThemeUtils.LIGHT_BLUE));
                 ThemeUtils.changeToTheme(Objects.requireNonNull(getActivity()), ThemeUtils.LIGHT_BLUE);
                 break;
             case R.id.darkGreen:
-                themeRepository.insertOrReplaceTheme(new Theme(1, ThemeUtils.DARK_GREEN));
                 ThemeUtils.changeToTheme(Objects.requireNonNull(getActivity()), ThemeUtils.DARK_GREEN);
                 break;
             case R.id.lightGreen:
-                themeRepository.insertOrReplaceTheme(new Theme(1, ThemeUtils.LIGHT_GREEN));
                 ThemeUtils.changeToTheme(Objects.requireNonNull(getActivity()), ThemeUtils.LIGHT_GREEN);
                 break;
             case R.id.yellow:
-                themeRepository.insertOrReplaceTheme(new Theme(1, ThemeUtils.YELLOW));
                 ThemeUtils.changeToTheme(Objects.requireNonNull(getActivity()), ThemeUtils.YELLOW);
                 break;
             case R.id.pink:
-                themeRepository.insertOrReplaceTheme(new Theme(1, ThemeUtils.PINK));
                 ThemeUtils.changeToTheme(Objects.requireNonNull(getActivity()), ThemeUtils.PINK);
                 break;
             case R.id.black:
-                themeRepository.insertOrReplaceTheme(new Theme(1, ThemeUtils.BLACK));
                 ThemeUtils.changeToTheme(Objects.requireNonNull(getActivity()), ThemeUtils.BLACK);
                 break;
             case R.id.grey:
-                themeRepository.insertOrReplaceTheme(new Theme(1, ThemeUtils.GREY));
                 ThemeUtils.changeToTheme(Objects.requireNonNull(getActivity()), ThemeUtils.GREY);
                 break;
             case R.id.red:
-                themeRepository.insertOrReplaceTheme(new Theme(1, ThemeUtils.RED));
                 ThemeUtils.changeToTheme(Objects.requireNonNull(getActivity()), ThemeUtils.RED);
                 break;
             case R.id.purple:
-                themeRepository.insertOrReplaceTheme(new Theme(1, ThemeUtils.PURPLE));
                 ThemeUtils.changeToTheme(Objects.requireNonNull(getActivity()), ThemeUtils.PURPLE);
                 break;
             case R.id.orange:
-                themeRepository.insertOrReplaceTheme(new Theme(1, ThemeUtils.ORANGE));
                 ThemeUtils.changeToTheme(Objects.requireNonNull(getActivity()), ThemeUtils.ORANGE);
                 break;
             case R.id.brown:
-                themeRepository.insertOrReplaceTheme(new Theme(1, ThemeUtils.BROWN));
                 ThemeUtils.changeToTheme(Objects.requireNonNull(getActivity()), ThemeUtils.BROWN);
                 break;
             default:
             case R.id.defaultTheme:
-                themeRepository.insertOrReplaceTheme(new Theme(1, ThemeUtils.DEFAULT));
                 ThemeUtils.changeToTheme(Objects.requireNonNull(getActivity()), ThemeUtils.DEFAULT);
                 break;
         }
