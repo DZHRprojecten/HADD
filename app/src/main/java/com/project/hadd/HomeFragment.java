@@ -23,7 +23,6 @@ import android.widget.Button;
 import android.widget.ListView;
 
 import java.util.ArrayList;
-import java.util.UUID;
 
 public class HomeFragment extends Fragment implements View.OnClickListener, AdapterView.OnItemClickListener {
 
@@ -31,11 +30,6 @@ public class HomeFragment extends Fragment implements View.OnClickListener, Adap
     private Button button;
     Button btnFindUnpairedDevices;
     BluetoothAdapter mBluetoothAdapter;
-
-    private static final UUID MY_UUID_INSECURE =
-            UUID.fromString("8ce255c0-200a-11e0-ac64-0800200c9a66");
-
-    BluetoothDevice mBTDevice;
 
     public ArrayList<BluetoothDevice> mBTDevices = new ArrayList<>();
     public DeviceListAdapter mDeviceListAdapter;
