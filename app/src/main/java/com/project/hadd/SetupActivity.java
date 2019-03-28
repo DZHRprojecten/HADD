@@ -31,6 +31,10 @@ public class SetupActivity extends AppCompatActivity {
                     Intent intent = new Intent(SetupActivity.this, MainActivity.class);
                     startActivity(intent);
 //                    ThemeUtils.changeToTheme(new MainActivity());
+                }  else {
+                    ThemeUtils.setcTheme(ThemeUtils.DEFAULT);
+                    Intent intent = new Intent(SetupActivity.this, MainActivity.class);
+                    startActivity(intent);
                 }
             }
         });
