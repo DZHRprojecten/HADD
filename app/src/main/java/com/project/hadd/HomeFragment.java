@@ -4,12 +4,14 @@ import android.Manifest;
 import android.app.Activity;
 import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
+import android.bluetooth.BluetoothSocket;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.os.Build;
 import android.os.Bundle;
+import android.os.Handler;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.annotation.RequiresApi;
@@ -22,6 +24,9 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.util.ArrayList;
 
 public class HomeFragment extends Fragment implements View.OnClickListener, AdapterView.OnItemClickListener {
@@ -47,7 +52,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener, Adap
         mBTDevices = new ArrayList<>();
 
         IntentFilter filter = new IntentFilter(BluetoothDevice.ACTION_BOND_STATE_CHANGED);
-        registerReceiver(mBroadcastReceiver4, filter);
+        registerReceiver(mBroadcastReceiver3, filter);
 
         mBluetoothAdapter = BluetoothAdapter.getDefaultAdapter();
 
@@ -65,7 +70,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener, Adap
         return view;
     }
 
-    private void registerReceiver(BroadcastReceiver mBroadcastReceiver4, IntentFilter filter) {
+    private void registerReceiver(BroadcastReceiver mBroadcastReceiver3, IntentFilter filter) {
     }
 
     // Create a BroadcastReceiver for ACTION_FOUND.
@@ -94,7 +99,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener, Adap
                 }
             };
 
-    private BroadcastReceiver mBroadcastReceiver3 = new BroadcastReceiver() {
+    private BroadcastReceiver mBroadcastReceiver2 = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
             final String action = intent.getAction();
@@ -110,7 +115,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener, Adap
         }
     };
 
-    private final BroadcastReceiver mBroadcastReceiver4 = new BroadcastReceiver() {
+    private final BroadcastReceiver mBroadcastReceiver3 = new BroadcastReceiver() {
         @Override
         public void onReceive(Context context, Intent intent) {
             final String action = intent.getAction();
@@ -138,8 +143,8 @@ public class HomeFragment extends Fragment implements View.OnClickListener, Adap
         super.onDestroyView();
         
         unregisterReceiver(mBroadcastReceiver1);
+        unregisterReceiver(mBroadcastReceiver2);
         unregisterReceiver(mBroadcastReceiver3);
-        unregisterReceiver(mBroadcastReceiver4);
         /*try {
             mActivity.unregisterReceiver(mBroadcastReceiver1);
         } catch (Exception e) {
@@ -147,7 +152,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener, Adap
         }*/
     }
 
-    private void unregisterReceiver(BroadcastReceiver mBroadcastReceiver4) {
+    private void unregisterReceiver(BroadcastReceiver mBroadcastReceiver3) {
     }
 
     @Override
@@ -210,7 +215,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener, Adap
 
             mBluetoothAdapter.startDiscovery();
             IntentFilter discoverDevicesIntent = new IntentFilter(BluetoothDevice.ACTION_FOUND);
-            mActivity.registerReceiver(mBroadcastReceiver3, discoverDevicesIntent);
+            mActivity.registerReceiver(mBroadcastReceiver2, discoverDevicesIntent);
         }
         if (!mBluetoothAdapter.isDiscovering()) {
             //check BT permissions in manifest
@@ -218,7 +223,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener, Adap
 
             mBluetoothAdapter.startDiscovery();
             IntentFilter discoverDevicesIntent = new IntentFilter(BluetoothDevice.ACTION_FOUND);
-            mActivity.registerReceiver(mBroadcastReceiver3, discoverDevicesIntent);
+            mActivity.registerReceiver(mBroadcastReceiver2, discoverDevicesIntent);
         }
     }
 
@@ -253,4 +258,5 @@ public class HomeFragment extends Fragment implements View.OnClickListener, Adap
         }
 
     }
+
 }
