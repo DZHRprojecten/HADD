@@ -138,11 +138,32 @@
     </LinearLayout>
 
     <Button
-        android:id="@+id/Opslaan"
+        android:id="@+id/btnStartConnection"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_alignParentBottom="true"
-        android:layout_marginBottom="139dp"
-        android:text="Opslaan" />
+        android:layout_marginBottom="91dp"
+        android:text="Start Connection" />
+
+    <Button
+        android:id="@+id/btnSend"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="25dp"
+        android:text="Send" />
+
+    <EditText
+        android:id="@+id/editText"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/RegisteredDBseekbar"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginStart="12dp"
+        android:layout_marginLeft="12dp"
+        android:layout_marginTop="415dp"
+        android:hint="Enter text here"
+        tools:ignore="NotSibling" />
 
 </RelativeLayout>
