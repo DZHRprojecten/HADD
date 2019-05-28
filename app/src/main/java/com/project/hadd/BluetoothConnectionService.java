@@ -23,6 +23,7 @@ public class BluetoothConnectionService {
 
     private final BluetoothAdapter mBluetoothAdapter;
     Context mContext;
+
     private AcceptThread minsecureAcceptThread;
     private ConnectThread mConnectThread;
     private BluetoothDevice mmDevice;
