@@ -246,7 +246,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener, Adap
         Log.d(TAG, "onItemClick: You clicked on a device.");
         String deviceName = mBTDevices.get(i).getName();
         String deviceAddress = mBTDevices.get(i).getAddress();
-
+        Globals.getInstance().setBtAdress(deviceAddress);
         Log.d(TAG, "onItemClick: deviceName = " + deviceName);
         Log.d(TAG, "onItemClick: deviceAddress = " + deviceAddress);
 

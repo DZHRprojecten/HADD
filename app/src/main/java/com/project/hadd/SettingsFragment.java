@@ -24,13 +24,17 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
+import java.lang.reflect.Method;
 import java.nio.charset.Charset;
 import java.util.ArrayList;
 import java.util.UUID;
+
+import javax.microedition.io.StreamConnection;
 
 public class SettingsFragment extends Fragment implements View.OnClickListener, AdapterView.OnItemClickListener {
 
@@ -41,13 +45,19 @@ public class SettingsFragment extends Fragment implements View.OnClickListener, 
 
     Button btnStartConnection;
     Button btnSend;
-
+    BluetoothSocket btSocket;
     EditText etSend;
+    public BluetoothDevice device;
+    BluetoothAdapter btAdapter;
+    private OutputStream out;
+    private int port = 1;
 
     BluetoothConnectionService mBluetoothConnection;
 
-    private static final UUID MY_UUID_INSECURE =
-            UUID.fromString("8ce255c0-200a-11e0-ac64-0800200c9a66");
+//    private static String btAdress = "B8:27:EB:EC:4F:E5";
+    private static String btAdress = Globals.getInstance().getBtAdress();
+    //    private static final UUID MY_UUID_INSECURE = UUID.fromString("8ce255c0-200a-11e0-ac64-0800200c9a66");
+    private static final UUID MY_UUID_INSECURE = UUID.fromString("5fa1ec37-3719-4b25-be14-1f7d29135a13");
 
     BluetoothDevice mBTDevice;
 
@@ -66,8 +76,6 @@ public class SettingsFragment extends Fragment implements View.OnClickListener, 
         lvNewDevices = view.findViewById(R.id.lvNewDevices);
 
         btnStartConnection = view.findViewById(R.id.btnStartConnection);
-        btnSend = view.findViewById(R.id.btnSend);
-        etSend = view.findViewById(R.id.editText);
         mBTDevices = new ArrayList<>();
 
         IntentFilter filter = new IntentFilter(BluetoothDevice.ACTION_BOND_STATE_CHANGED);
@@ -86,30 +94,62 @@ public class SettingsFragment extends Fragment implements View.OnClickListener, 
                 enableDisableBT();
             }
         });
-
-        btnStartConnection.setOnClickListener(new View.OnClickListener(){
+        btnStartConnection.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view){
-               startConnection();
+            public void onClick(View view) {
+                startConnection();
             }
         });
 
-        btnSend.setOnClickListener(new View.OnClickListener(){
+        ////////////////////////////////////////////////////////////////////
+        btnSend = view.findViewById(R.id.btnSend);
+        etSend = view.findViewById(R.id.editText);
+
+        btAdapter = BluetoothAdapter.getDefaultAdapter();
+
+        btnSend.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view){
-                byte[] bytes = etSend.getText().toString().getBytes(Charset.defaultCharset());
-                mBluetoothConnection.write(bytes);
+            public void onClick(View view) {
+//                byte[] bytes = etSend.getText().toString().getBytes(Charset.defaultCharset());
+//                mBluetoothConnection.write(bytes);
+                device = btAdapter.getRemoteDevice(btAdress);
+                try {
+                    Method m = device.getClass().getMethod("createInsecureRfcommSocket", new Class[]{int.class});
+                    btSocket = (BluetoothSocket) m.invoke(device, port);
+//                    btSocket = device.createRfcommSocketToServiceRecord(MY_UUID_INSECURE);
+                } catch (Exception e) {
+                    Log.e(TAG, "erno? ", e);
+                }
+//                btAdapter.cancelDiscovery();
+                try {
+                    String sendvalue = "{\"threshold\":\"" + etSend.getText().toString() + "\"}";
+                    btSocket.connect();
+                    out = btSocket.getOutputStream();
+                    String msg = sendvalue;
+                    byte[] msgBffr = msg.getBytes();
+                    out.write(msgBffr);
+//                    header.append("\n btSocket Created!");
+                } catch (IOException e) {
+                    Toast.makeText(getContext(), "Could not connect to socket", Toast.LENGTH_LONG).show();
+                    try {
+                        btSocket.close();
+                    } catch (Exception b) {
+                    }
+                }
+//                String value = etSend.getText().toString();
+                Log.e(TAG, etSend.getText().toString());
             }
         });
+        ////////////////////////////////////////////////////////////////////
         return view;
     }
 
-    public void startConnection(){
+    public void startConnection() {
         startBTConnection(mBTDevice, MY_UUID_INSECURE);
     }
 
     //starting chat service method
-    public void startBTConnection(BluetoothDevice device, UUID uuid){
+    public void startBTConnection(BluetoothDevice device, UUID uuid) {
         Log.d(TAG, "startBTConnection: Initializing RFCOM Bluetooth Connection");
 
         mBluetoothConnection.startClient(device, uuid);
@@ -164,18 +204,18 @@ public class SettingsFragment extends Fragment implements View.OnClickListener, 
         @Override
         public void onReceive(Context context, Intent intent) {
             final String action = intent.getAction();
-            if(action.equals(BluetoothDevice.ACTION_BOND_STATE_CHANGED)){
+            if (action.equals(BluetoothDevice.ACTION_BOND_STATE_CHANGED)) {
                 BluetoothDevice mDevice = intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
                 //3 cases:
                 //case 1: bonded already
-                if(mDevice.getBondState() == BluetoothDevice.BOND_BONDED){
+                if (mDevice.getBondState() == BluetoothDevice.BOND_BONDED) {
                     Log.d(TAG, "BroadcastReceiver: BOND_BONDED.");
                     mBTDevice = mDevice;
                 }//case 2: creating a bond
-                if(mDevice.getBondState() == BluetoothDevice.BOND_BONDING){
+                if (mDevice.getBondState() == BluetoothDevice.BOND_BONDING) {
                     Log.d(TAG, "BroadcastReceiver: BOND_BONDING.");
                 }//case 3: breaking a bond
-                if(mDevice.getBondState() == BluetoothDevice.BOND_NONE){
+                if (mDevice.getBondState() == BluetoothDevice.BOND_NONE) {
                     Log.d(TAG, "BroadcastReceiver: BOND_NONE.");
                 }
 
@@ -298,7 +338,7 @@ public class SettingsFragment extends Fragment implements View.OnClickListener, 
 
         //create the bond
         //requires API 17+, Jellybean
-        if(Build.VERSION.SDK_INT > Build.VERSION_CODES.JELLY_BEAN_MR2){
+        if (Build.VERSION.SDK_INT > Build.VERSION_CODES.JELLY_BEAN_MR2) {
             Log.d(TAG, "Trying to pair with " + deviceName);
             mBTDevices.get(i).createBond();
 
