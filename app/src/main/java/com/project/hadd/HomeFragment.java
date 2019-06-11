@@ -252,10 +252,10 @@ public class HomeFragment extends Fragment implements View.OnClickListener, Adap
 
         //create the bond
         //requires API 17+, Jellybean
-        if(Build.VERSION.SDK_INT > Build.VERSION_CODES.JELLY_BEAN_MR2){
-            Log.d(TAG, "Trying to pair with " + deviceName);
-            mBTDevices.get(i).createBond();
-        }
+//        if(Build.VERSION.SDK_INT > Build.VERSION_CODES.JELLY_BEAN_MR2){
+//            Log.d(TAG, "Trying to pair with " + deviceName);
+//            mBTDevices.get(i).createBond();
+//        }
 
     }
 
