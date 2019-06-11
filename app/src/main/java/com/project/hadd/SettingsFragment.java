@@ -60,7 +60,7 @@ public class SettingsFragment extends Fragment implements View.OnClickListener, 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_message, container, false);
+        View view = inflater.inflate(R.layout.fragment_settings, container, false);
         button = view.findViewById(R.id.Connectionbutton);
         btnFindUnpairedDevices = view.findViewById(R.id.btnFindUnpairedDevices);
         lvNewDevices = view.findViewById(R.id.lvNewDevices);
@@ -191,11 +191,11 @@ public class SettingsFragment extends Fragment implements View.OnClickListener, 
         unregisterReceiver(mBroadcastReceiver1);
         unregisterReceiver(mBroadcastReceiver2);
         unregisterReceiver(mBroadcastReceiver3);
-        /*try {
+        try {
             mActivity.unregisterReceiver(mBroadcastReceiver1);
         } catch (Exception e) {
             e.printStackTrace();
-        }*/
+        }
     }
 
     private void unregisterReceiver(BroadcastReceiver mBroadcastReceiver3) {
@@ -303,7 +303,7 @@ public class SettingsFragment extends Fragment implements View.OnClickListener, 
             mBTDevices.get(i).createBond();
 
             mBTDevice = mBTDevices.get(i);
-            mBluetoothConnection = new BluetoothConnectionService(SettingsFragment.this);
+            mBluetoothConnection = new BluetoothConnectionService(getContext());
         }
 
     }
