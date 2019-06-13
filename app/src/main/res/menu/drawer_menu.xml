@@ -6,32 +6,19 @@
     <group android:checkableBehavior="single">
         <item
             android:id="@+id/nav_home"
-            android:icon="@drawable/ic_message"
+            android:icon="@drawable/ic_home_black_24dp"
             android:title="Hoofdpagina" />
         <item
             android:id="@+id/nav_theme"
-            android:icon="@drawable/ic_message"
+            android:icon="@drawable/ic_color_lens_black_24dp"
             android:title="Thema" />
         <item
             android:id="@+id/nav_settings"
-            android:icon="@drawable/ic_message"
+            android:icon="@drawable/ic_settings_black_24dp"
             android:title="Opties" />
         <item
             android:id="@+id/nav_profile"
-            android:icon="@drawable/ic_message"
+            android:icon="@drawable/ic_person_black_24dp"
             android:title="Over ons" />
     </group>
-
-    <item android:title="Communicatie">
-        <menu>
-            <item
-                android:id="@+id/nav_share"
-                android:icon="@drawable/ic_message"
-                android:title="Delen" />
-            <item
-                android:id="@+id/nav_send"
-                android:icon="@drawable/ic_message"
-                android:title="Versturen" />
-        </menu>
-    </item>
 </menu>

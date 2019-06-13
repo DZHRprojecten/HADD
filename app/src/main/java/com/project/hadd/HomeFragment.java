@@ -23,6 +23,7 @@ import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -49,6 +50,11 @@ public class HomeFragment extends Fragment implements View.OnClickListener, Adap
         button = view.findViewById(R.id.Connectionbutton);
         btnFindUnpairedDevices = view.findViewById(R.id.btnFindUnpairedDevices);
         lvNewDevices = view.findViewById(R.id.lvNewDevices);
+
+        if (Globals.getInstance().getDevice() != null) {
+            Toast.makeText(getContext(), "Current connected to device: " + Globals.getInstance().getDevice().getName(), Toast.LENGTH_LONG).show();
+        }
+
         mBTDevices = new ArrayList<>();
 
         IntentFilter filter = new IntentFilter(BluetoothDevice.ACTION_BOND_STATE_CHANGED);
@@ -107,10 +113,12 @@ public class HomeFragment extends Fragment implements View.OnClickListener, Adap
 
             if (BluetoothDevice.ACTION_FOUND.equals(action)) {
                 BluetoothDevice device = intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
-                mBTDevices.add(device);
+                if (device.getName() != null && device.getName().equals("HADD") && !mBTDevices.contains(device)) {
+                    mBTDevices.add(device);
+                    mDeviceListAdapter = new DeviceListAdapter(context, R.layout.device_adapter_view, mBTDevices);
+                    lvNewDevices.setAdapter(mDeviceListAdapter);
+                }
                 Log.d(TAG, "onReceive: " + device.getName() + ": " + device.getAddress());
-                mDeviceListAdapter = new DeviceListAdapter(context, R.layout.device_adapter_view, mBTDevices);
-                lvNewDevices.setAdapter(mDeviceListAdapter);
             }
         }
     };
@@ -119,17 +127,17 @@ public class HomeFragment extends Fragment implements View.OnClickListener, Adap
         @Override
         public void onReceive(Context context, Intent intent) {
             final String action = intent.getAction();
-            if(action.equals(BluetoothDevice.ACTION_BOND_STATE_CHANGED)){
+            if (action.equals(BluetoothDevice.ACTION_BOND_STATE_CHANGED)) {
                 BluetoothDevice mDevice = intent.getParcelableExtra(BluetoothDevice.EXTRA_DEVICE);
                 //3 cases:
                 //case 1: bonded already
-                if(mDevice.getBondState() == BluetoothDevice.BOND_BONDED){
+                if (mDevice.getBondState() == BluetoothDevice.BOND_BONDED) {
                     Log.d(TAG, "BroadcastReceiver: BOND_BONDED.");
                 }//case 2: creating a bond
-                if(mDevice.getBondState() == BluetoothDevice.BOND_BONDING){
+                if (mDevice.getBondState() == BluetoothDevice.BOND_BONDING) {
                     Log.d(TAG, "BroadcastReceiver: BOND_BONDING.");
                 }//case 3: breaking a bond
-                if(mDevice.getBondState() == BluetoothDevice.BOND_NONE){
+                if (mDevice.getBondState() == BluetoothDevice.BOND_NONE) {
                     Log.d(TAG, "BroadcastReceiver: BOND_NONE.");
                 }
 
@@ -141,7 +149,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener, Adap
     public void onDestroyView() {
         Log.d(TAG, "onDestroy: called.");
         super.onDestroyView();
-        
+
         unregisterReceiver(mBroadcastReceiver1);
         unregisterReceiver(mBroadcastReceiver2);
         unregisterReceiver(mBroadcastReceiver3);
@@ -247,6 +255,8 @@ public class HomeFragment extends Fragment implements View.OnClickListener, Adap
         String deviceName = mBTDevices.get(i).getName();
         String deviceAddress = mBTDevices.get(i).getAddress();
         Globals.getInstance().setBtAdress(deviceAddress);
+        Globals.getInstance().setDevice(mBTDevices.get(i));
+        Toast.makeText(getContext(), "Connected to: " + mBTDevices.get(i).getName(), Toast.LENGTH_LONG).show();
         Log.d(TAG, "onItemClick: deviceName = " + deviceName);
         Log.d(TAG, "onItemClick: deviceAddress = " + deviceAddress);
 

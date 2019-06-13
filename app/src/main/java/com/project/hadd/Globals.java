@@ -1,7 +1,10 @@
 package com.project.hadd;
 
+import android.bluetooth.BluetoothDevice;
+
 public class Globals {
     private String btAdress = "B8:27:EB:EC:4F:E5";
+    private BluetoothDevice device;
 
     private static final Globals ourInstance = new Globals();
 
@@ -18,5 +21,13 @@ public class Globals {
 
     public void setBtAdress(String btAdress) {
         this.btAdress = btAdress;
+    }
+
+    public BluetoothDevice getDevice() {
+        return device;
+    }
+
+    public void setDevice(BluetoothDevice device) {
+        this.device = device;
     }
 }

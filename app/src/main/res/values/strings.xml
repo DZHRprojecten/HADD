@@ -47,5 +47,6 @@
     <string name="over_ons_tekst">Wij zijn de makers van de HADD (High-Definition Audio Detection Director. Wij hebben de HADD vooral gemaakt om auditief beperkte mensen te helpen om toch input van geluid te ervaren. Ons team bestaat uit een paar gedreven studenten van de Hogeschool Rotterdam.</string>
     <string name="over_ons_tekst1">Wij hopen dat onze uitvinding u bevalt en dat u er veel plezier mee heeft. De groeten van Alex Hui, Oguzcan Karakoc, Hoes Öztürk, Liam de Waal, Remco de Zeeuw en Danny Zoetmulder.
 </string>
+    <string name="threshold">Threshold</string>
 
 </resources>
