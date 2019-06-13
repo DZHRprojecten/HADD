@@ -1,7 +1,7 @@
 <resources>
     <string name="app_name">HADD</string>
     <string name="high_definition_audio_detection_director">High-definition Audio Detection Director</string>
-    <string name="connect_to_hadd">Connect to HADD</string>
+    <string name="connect_to_hadd">Toggle bluetooth</string>
     <string name="title_activity_themechange">Themechange</string>
     <string name="title_activity_settings">Instellingen</string>
     <string name="Sleepmodecheckboxtitle">Slaapmodus</string>
